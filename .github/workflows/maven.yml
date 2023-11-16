@@ -37,5 +37,5 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: RuoYi-Vue
-        path: target/*.jar
+        path: ruoyi-admin/target/*.jar
 
