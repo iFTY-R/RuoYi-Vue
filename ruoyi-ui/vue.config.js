@@ -1,5 +1,6 @@
 'use strict'
 const path = require('path')
+const webpack = require('webpack')
 
 function resolve(dir) {
   return path.join(__dirname, dir)
@@ -9,7 +10,7 @@ const CompressionPlugin = require('compression-webpack-plugin')
 
 const name = process.env.VUE_APP_TITLE || '若依管理系统' // 网页标题
 
-const baseUrl = 'http://localhost:8080' // 后端接口
+const baseUrl = 'https://vue.ruoyi.vip/prod-api/' // 后端接口
 
 const port = process.env.port || process.env.npm_config_port || 80 // 端口
 
@@ -27,12 +28,11 @@ module.exports = {
   assetsDir: 'static',
   // 如果你不需要生产环境的 source map，可以将其设置为 false 以加速生产环境构建。
   productionSourceMap: false,
-  transpileDependencies: ['quill'],
   // webpack-dev-server 相关配置
   devServer: {
     host: '0.0.0.0',
     port: port,
-    open: true,
+    open: false,
     proxy: {
       // detail: https://cli.vuejs.org/config/#devserver-proxy
       [process.env.VUE_APP_BASE_API]: {
@@ -48,7 +48,7 @@ module.exports = {
         changeOrigin: true
       }
     },
-    disableHostCheck: true
+    allowedHosts: 'all'
   },
   css: {
     loaderOptions: {
@@ -62,6 +62,11 @@ module.exports = {
     resolve: {
       alias: {
         '@': resolve('src')
+      },
+      fallback: {
+        'path': require.resolve('path-browserify'),
+        'buffer': false,
+        'process': false
       }
     },
     plugins: [
@@ -73,6 +78,11 @@ module.exports = {
         algorithm: 'gzip',                             // 使用gzip压缩
         minRatio: 0.8,                                 // 压缩比例，小于 80% 的文件不会被压缩
         deleteOriginalAssets: false                    // 压缩后删除原文件
+      }),
+      // 添加process和Buffer的polyfill
+      new webpack.ProvidePlugin({
+        process: 'process/browser',
+        Buffer: ['buffer', 'Buffer']
       })
     ],
   },

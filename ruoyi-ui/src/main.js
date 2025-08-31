@@ -23,8 +23,6 @@ import { parseTime, resetForm, addDateRange, selectDictLabel, selectDictLabels, 
 import Pagination from "@/components/Pagination"
 // 自定义表格工具组件
 import RightToolbar from "@/components/RightToolbar"
-// 富文本组件
-import Editor from "@/components/Editor"
 // 文件上传组件
 import FileUpload from "@/components/FileUpload"
 // 图片上传组件
@@ -51,7 +49,6 @@ Vue.prototype.handleTree = handleTree
 Vue.component('DictTag', DictTag)
 Vue.component('Pagination', Pagination)
 Vue.component('RightToolbar', RightToolbar)
-Vue.component('Editor', Editor)
 Vue.component('FileUpload', FileUpload)
 Vue.component('ImageUpload', ImageUpload)
 Vue.component('ImagePreview', ImagePreview)
