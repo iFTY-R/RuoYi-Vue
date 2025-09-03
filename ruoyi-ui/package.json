@@ -50,7 +50,7 @@
   },
   "devDependencies": {
     "@unocss/webpack": "^66.5.0",
-    "@vue/cli-plugin-babel": "4.5.19",
+    "@vue/cli-plugin-babel": "5.0.9",
     "@vue/cli-service": "5.0.9",
     "babel-plugin-dynamic-import-node": "2.3.3",
     "buffer": "^6.0.3",
